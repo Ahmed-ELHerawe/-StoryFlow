@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0a0a0f;
+    color: #f0eef8;
+    font-family: 'Tajawal', 'DM Sans', sans-serif;
+    direction: rtl;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #12121a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3a3a52;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #f5c842;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    @apply bg-gold-500 text-ink-950 font-bold px-6 py-3 rounded-lg
+           hover:bg-gold-400 active:scale-95 transition-all duration-200
+           cursor-pointer select-none;
+  }
+
+  .btn-ghost {
+    @apply border border-mist-300/30 text-mist-200 px-6 py-3 rounded-lg
+           hover:border-gold-500/60 hover:text-gold-400 transition-all duration-200
+           cursor-pointer select-none;
+  }
+
+  .card-dark {
+    @apply bg-ink-800 border border-ink-600 rounded-2xl;
+  }
+
+  .choice-card {
+    @apply relative overflow-hidden rounded-xl border border-mist-300/20
+           bg-ink-800/80 backdrop-blur-sm cursor-pointer
+           hover:border-gold-500/60 hover:bg-ink-700/80
+           active:scale-[0.98] transition-all duration-300;
+  }
+
+  .choice-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-gold-500/0 via-gold-500/5 to-gold-500/0
+           opacity-0 transition-opacity duration-300;
+  }
+
+  .choice-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .genre-badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .video-container {
+    @apply relative w-full bg-ink-950 overflow-hidden;
+    aspect-ratio: 16/9;
+  }
+
+  .progress-bar {
+    @apply h-1 bg-ink-700 rounded-full overflow-hidden;
+  }
+
+  .progress-bar-fill {
+    @apply h-full bg-gold-500 rounded-full transition-all duration-300;
+  }
+
+  .stat-card {
+    @apply bg-ink-800 border border-ink-600 rounded-xl p-4 text-center;
+  }
+
+  .leaderboard-row {
+    @apply flex items-center gap-4 p-4 rounded-xl
+           bg-ink-800/60 border border-ink-600/60
+           hover:border-gold-500/30 transition-all duration-200;
+  }
+
+  .input-dark {
+    @apply w-full bg-ink-700 border border-ink-600 rounded-lg px-4 py-3
+           text-mist-100 placeholder-mist-400/50
+           focus:outline-none focus:border-gold-500/60 focus:ring-1 focus:ring-gold-500/30
+           transition-all duration-200;
+    direction: ltr;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+
+  .nav-link {
+    @apply text-mist-300 hover:text-gold-400 transition-colors duration-200 text-sm font-medium;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #f5c842, #e8b520, #ff6b4a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 30px rgba(245, 200, 66, 0.25);
+  }
+
+  .glow-ember {
+    box-shadow: 0 0 30px rgba(255, 107, 74, 0.25);
+  }
+
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+}
+
+/* Video player custom controls */
+.custom-video-controls {
+  background: linear-gradient(to top, rgba(10, 10, 15, 0.95) 0%, transparent 100%);
+}
+
+/* Animated choice overlay */
+.choices-overlay {
+  animation: choicesReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes choicesReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Story tree connector lines */
+.tree-line {
+  stroke: #3a3a52;
+  stroke-width: 2;
+  stroke-dasharray: 6 3;
+  fill: none;
+}
+
+/* Rank badges */
+.rank-1 { @apply text-gold-400 font-black; }
+.rank-2 { @apply text-mist-300 font-black; }
+.rank-3 { @apply text-amber-600 font-black; }
